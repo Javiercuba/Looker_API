@@ -1,0 +1,18 @@
+{
+    "name": "Dominio",
+    "title": "Dominio",
+    "type": "field_filter",
+    "default_value": "",
+    "model": "adoption",
+    "explore": "reports_customer_gmail",
+    "dimension": "reports_customer_gmail.dominio",
+    "row": 0,
+    "listens_to_filters": [],
+    "allow_multiple_values": false,
+    "required": false,
+    "filters": "reports_customer_gmail.dominio:ipnet.cloud",
+    "ui_config": {
+        "type": "checkboxes",
+        "display": "popover"
+    }
+}

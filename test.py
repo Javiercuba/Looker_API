@@ -24,24 +24,26 @@ my_query = my_look.query
 my_query = {'looker_test.Count': "=2"}
 
 
-#--------------------------------------
+# --------------------------------------
 query = sdk.look(look_id="39").query
+print(query.fields)
+# CREATE NEW QUERY AND ADD A FILTER
 
-##CREATE NEW QUERY AND ADD A FILTER
+new_query = sdk.create_query(body=models.WriteQuery(
+ model="alerts_sample_training", view=query.view,
+ fields=query.fields,
+ filters={'looker_test.count': '2', 'looker_test.name': 'Demasiado tiempo detenido (56 minutos)'}))
 
-new_query = sdk.create_query(body=models.WriteQuery(model="alerts_sample_training", view=query.view, fields=query.fields,
-                                                    filters={'looker_test.count': '2', 'looker_test.name': 'Demasiado tiempo detenido (56 minutos)'}))
-
-### UPDATE LOOK WITH NEW QUERY ID
-
+# UPDATE LOOK WITH NEW QUERY ID
+print(new_query)
 sdk.update_look(look_id="39", body=models.WriteLookWithQuery(
     query_id=new_query.id))
 
-###RUN LOOK
+# RUN LOOK
 
 result = sdk.run_look(look_id="39", result_format="csv")
 
-print(result)
+# print(result)
 
 
 # def update_query_filters(api_query, changes):
